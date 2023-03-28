@@ -1,0 +1,38 @@
+<div class="container-fluid min-vh-90 d-flex flex-column">
+  <div class="row align-items-start">
+    <div class="col-md-3 pt-3" style="height:90vh;">
+      <h5>Something about app here</h5>
+    </div>
+    <div class="col-md-6 pt-3" id="othercols" style="height:90vh;">
+      <h5>Save for future use - link to dialog box for search</h5>
+    </div>
+
+    <div class="col-md-3 pt-3" id="othercols" style="height:90vh;">
+      <h3 class="text-center">Suggested Playlists:</h3>
+          <ol class="list-group list-group-numbered p-1" >
+            <li class="list-group-item d-flex justify-content-between align-items-start"
+              *ngFor="let plist of suggestedPlaylists"  >
+              <div class="ms-2 me-auto"><a class="text-decoration-none text-body"routerLink="/playlists/{{plist.id}}">
+                <div class="fw-bold">{{plist.playlist_name}} </div>
+                <div class="text-secondary">{{plist.user.username}}</div></a>
+              </div>
+              <span class="badge bg-primary rounded-pill">14</span>
+            </li>
+            </ol>
+
+            <h3 class="mt-5 text-center">People You May Know:</h3>
+            <ol class="list-group list-group-numbered p-1" >
+              <li class="list-group-item d-flex justify-content-between align-items-start"*ngFor="let ulist of suggestedUsers">
+                <div class="ms-2 me-auto"><a class="text-decoration-none text-body"routerLink="/profile/{{ulist.username}}">
+                  <div class="fw-bold">{{ulist.username}}</div>
+                  <div class="text-secondary">{{ulist.name}}</div></a>
+
+                </div>
+                <span class="badge bg-primary rounded-pill">14</span>
+              </li>
+              </ol>
+
+    </div>
+  </div>
+</div>
+

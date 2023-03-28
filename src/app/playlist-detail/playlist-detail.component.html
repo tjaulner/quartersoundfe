@@ -1,0 +1,38 @@
+<div class="container-fluid min-vh-90 d-flex flex-column">
+  <div class="row align-items-start">
+    <div class="col-md-9 pt-3" style="height:90vh;">
+      <mat-card *ngIf="playlist">
+        <mat-card-header>
+          <mat-card-title>{{playlist.playlist_name}}</mat-card-title>
+          <mat-card-subtitle class="mx-2">
+            <a class="text-decoration-none text-body"
+            routerLink="/profile/{{creator.username}}"
+            >{{creator.username}}</a> | {{playlist.created_at | date:'shortDate'}}</mat-card-subtitle>
+
+        </mat-card-header>
+        <mat-card-content class="mx-2">
+          <p>Track Listing:</p>
+
+          <mat-divider></mat-divider>
+          <mat-card-subtitle class="mx-2 pt-2">Last Updated: {{playlist.updated_at | date:'shortDate'}}</mat-card-subtitle>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="col-md-3 pt-3" id="othercols" style="height:90vh;">
+      <h3 class="mt-5 text-center">Other Playlists by this User:</h3>
+            <ol class="list-group list-group-numbered p-1" >
+              <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let plist of otherPlaylist">
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold">{{plist.playlist_name}}</div>
+                  <div class="text-secondary"></div>
+
+                </div>
+                <span class="badge bg-primary rounded-pill">14</span>
+              </li>
+              </ol>
+    </div>
+  </div>

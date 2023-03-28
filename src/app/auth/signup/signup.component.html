@@ -1,35 +1,57 @@
-<div class="col-md-8">
+<div class="col-md-8 m-3">
 <h1>Sign Up</h1>
-<form>
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
   <div class="row">
     <div class="col-6">
       <div class="mb-3">
         <label for="" class="form-label">Email Address</label>
-        <input type="email" class="form-control">
+        <input type="email"
+          id="email"
+          formControlName="email"
+          class="form-control">
       </div>
       <div class="mb-3">We may share your information with our mothers...maybe</div>
       <div class="row">
         <div class="col-6 mb-3">
           <label for="" class="form-label">First Name</label>
-          <input type="text" class="form-control">
+          <input type="text"
+            id="first_name"
+            formControlName="first_name"
+            class="form-control">
         </div>
         <div class="col-6 mb-3">
           <label for="" class="form-label">Last Name</label>
-          <input type="text" class="form-control">
+          <input type="text"
+            id="last_name"
+            formControlName="last_name"
+            class="form-control">
+        </div>
+        <div class="col-6 mb-3">
+          <label for="" class="form-label">Phone</label>
+          <input type="text"
+            id="phone"
+            formControlName="phone"
+            class="form-control">
         </div>
       </div>
       <div class="row">
         <div class="col-6 mb-3">
           <label for="" class="form-label">Password</label>
-          <input type="password" class="form-control">
+          <input type="password"
+            id="password"
+            formControlName="password"
+            class="form-control">
         </div>
         <div class="col-6 mb-3">
           <label for="" class="form-label">Confirm Password</label>
-          <input type="password" class="form-control">
+          <input type="password"
+            id="password_confirmation"
+            formControlName="password_confirmation"
+            class="form-control">
         </div>
       </div>
       <div class="text-center">
-        <button class="btn btn-primary">Sign Up</button>
+        <button class="btn btn-primary" type="submit">Sign Up</button>
       </div>
       <div><p>Already have an account? <a>Login</a></p></div>
 

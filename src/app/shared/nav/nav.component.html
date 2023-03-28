@@ -1,31 +1,35 @@
-<div class="col-md-12">
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+<div class="container">
+<div class="col-md-12" id="cols">
+  <nav class="navbar navbar-expand-lg rounded-3"  id="nav" style="background-color: #141f27">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand">Logo Here</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link" routerLink="/home">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+          <li class="nav-item" *ngIf="!currentUser">
+            <a class="nav-link" routerLink="/login">Login</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
+          <li class="nav-item" *ngIf="!currentUser">
+            <a class="nav-link" routerLink="/signup">Signup</a>
+          </li>
+          <li class="nav-item dropdown" *ngIf="currentUser">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Options
             </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
+            <ul class="dropdown-menu" >
+              <li><a class="dropdown-item">Profile</a></li>
+              <li><a class="dropdown-item">Create Playlist</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item" (click)="onLogout()" >Logout</a></li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
+          <li class="nav-item"><!--does not work yet-->
+            <span class="navbar-text"></span>
           </li>
         </ul>
         <form class="d-flex" role="search">
@@ -35,5 +39,6 @@
       </div>
     </div>
   </nav>
+</div>
 </div>
 

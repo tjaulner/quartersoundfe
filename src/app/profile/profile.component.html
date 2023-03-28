@@ -1,0 +1,30 @@
+<div class="container-fluid min-vh-90 d-flex flex-column">
+  <div class="row align-items-start">
+    <div class="col-md-6 pt-3" style="height:90vh;">
+      <h5>Profile info</h5>
+      <mat-card *ngIf="profileUser">
+        <mat-card-header>
+          <mat-card-title>{{profileUser.username}}</mat-card-title>
+          <mat-card-subtitle class="mx-2">{{profileUser.first_name}} {{profileUser.last_name}}  |  {{profileUser.email}}</mat-card-subtitle>
+
+        </mat-card-header>
+        <mat-card-content class="mx-2">
+          <mat-card-title><p>Current Playlists:</p></mat-card-title>
+
+          <mat-list role="list" *ngFor="let plist of profilePlaylists">
+            <mat-list-item role="listitem">{{plist.playlist_name}}</mat-list-item>
+          </mat-list>
+          <mat-divider></mat-divider>
+          <mat-card-subtitle class="mx-2 pt-2">Last Updated:</mat-card-subtitle>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="col-md-6 pt-3" id="othercols" style="height:90vh;">
+      <h5>Save for future use - </h5>
+    </div>
+  </div>
+</div>

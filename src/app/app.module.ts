@@ -9,14 +9,25 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
 import { SignupComponent } from './auth/signup/signup.component';
 import { NavComponent } from './shared/nav/nav.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './auth/login/login.component';
+import { HomeComponent } from './home/home.component';
+import { PlaylistDetailComponent } from './playlist-detail/playlist-detail.component';
+import { ProfileComponent } from './profile/profile.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupComponent,
-    NavComponent
+    NavComponent,
+    LoginComponent,
+    HomeComponent,
+    PlaylistDetailComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +37,10 @@ import { NavComponent } from './shared/nav/nav.component';
     MatInputModule,
     MatCardModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatListModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
