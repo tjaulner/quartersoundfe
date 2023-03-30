@@ -3,7 +3,13 @@
 html, body {
   height: 100%;
   }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: #141f27; color:#F5F8FA; }
+body {
+  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #141f27;
+  /*background: aliceblue;
+  color:#F5F8FA;*/
+  color:#141f27;
+ }
 
 #cols {
   border-bottom: 1px solid #657786;
@@ -13,7 +19,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background:
   border-left: 1px solid #657786;
 }
 
-.navbar li a {
+#logo {
+  fill:aliceblue;
+  /*margin-top: 25px;
+  margin-left: 10px;*/
+  padding-top: 0px;
+
+}
+
+
+/*.navbar li a {
   color: #F5F8FA;
 }
 
@@ -34,3 +49,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background:
   background-color:#141f27;
   color: #d3d9dd;
 }
+*/
+
+

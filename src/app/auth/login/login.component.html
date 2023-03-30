@@ -1,33 +1,33 @@
 <div class="col-md-8 m-3">
-  <h1>Login</h1>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div class="row">
-      <div class="col-8">
-        <div class="mb-3">
-          <label for="" class="form-label">Email Address</label>
-          <input type="email"
-            id="email"
-            formControlName="email"
-            class="form-control">
-        </div>
-      </div>
-    </div>
-        <div class="row">
-          <div class="col-8 mb-3">
-            <label for="" class="form-label">Password</label>
-            <input type="password"
-              id="password"
-              formControlName="password"
+    <h1>Login</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-6">
+          <div class="mb-3">
+            <label for="" class="form-label">Email Address</label>
+            <input type="email"
+              id="email"
+              formControlName="email"
               class="form-control">
           </div>
-
         </div>
-        <div class="text-center">
-          <button class="btn btn-primary" type="submit">Log In</button>
+      </div>
+        <div class="row">
+          <div class="col-6 mb-3">
+              <label for="" class="form-label">Password</label>
+              <input type="password"
+                id="password"
+                formControlName="password"
+                class="form-control">
+            </div>
         </div>
-        <div><p>Need to create an account? <a>Sign Up</a></p></div>
+          <div class="text-center">
+            <button class="btn btn-primary" type="submit">Login</button>
+          </div>
+          <div class="mt-2"><p>Need to create an account? <a routerLink="/signup">Signup</a>
+          </p></div>
+</form>
+        </div>
 
 
 
-  </form>
-  </div>
