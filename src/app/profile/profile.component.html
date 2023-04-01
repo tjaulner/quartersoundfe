@@ -63,7 +63,7 @@
       <mat-card-content class="mx-2">
         <mat-card-title><p>Current Playlists:</p></mat-card-title>
 
-        <mat-list role="list" *ngFor="let plist of profilePlaylists">
+        <mat-list role="list" *ngFor="let plist of profilePlaylists" routerLink="/playlists/{{plist.id}}" style="cursor: pointer">
           <mat-list-item role="listitem">{{plist.playlist_name}}</mat-list-item>
         </mat-list>
         <mat-divider></mat-divider>

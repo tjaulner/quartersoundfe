@@ -17,7 +17,9 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params)=>{
+      // get user from params
       const username = params.username;
+      // send request to get user info
       this.http.get(`http://localhost:3000/api/v1/users/${username}`).subscribe({
         next: (res:any)=>{
           this.profileUser = res.payload.user;

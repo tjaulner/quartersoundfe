@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AuthService } from 'src/app/auth/auth.service';
 
 
 const URL = 'http://localhost:3000/api/v1/'
@@ -10,7 +11,7 @@ const URL = 'http://localhost:3000/api/v1/'
 
 export class PlaylistService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private authService:AuthService) { }
 
   // this is for the 5 "suggested playlists" on the home page
   fetchPlaylists(){
@@ -25,5 +26,16 @@ export class PlaylistService {
   // this is for single playlist
   fetchPlaylist(id:number){
     return this.http.get(`${URL}playlists/${id}`)
+  }
+
+  createPlaylist(playlist){
+    const token = this.authService.getToken();
+
+    return this.http.post("http://localhost:3000/api/v1/playlists", playlist, {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      },
+
+    })
   }
 }

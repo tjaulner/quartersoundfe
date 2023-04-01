@@ -17,7 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { PlaylistDetailComponent } from './playlist-detail/playlist-detail.component';
-import { ProfileComponent } from './profile/profile.component'
+import { ProfileComponent } from './profile/profile.component';
+import { CreatePlaylistComponent } from './shared/modals/create-playlist/create-playlist.component';
+import { EditPlaylistComponent } from './shared/modals/edit-playlist/edit-playlist.component'
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { ProfileComponent } from './profile/profile.component'
     LoginComponent,
     HomeComponent,
     PlaylistDetailComponent,
-    ProfileComponent
+    ProfileComponent,
+    CreatePlaylistComponent,
+    EditPlaylistComponent
   ],
   imports: [
     BrowserModule,
