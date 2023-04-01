@@ -14,7 +14,10 @@ import { User } from '../models/user.model';
 export class NavComponent implements OnInit {
   currentUser: User = null;
 
-  constructor(private userService:UserService, private authService:AuthService, private dialogRef:MatDialog) { }
+  constructor(
+    private userService:UserService,
+    private authService:AuthService,
+    private dialogRef:MatDialog) { }
 
   ngOnInit(): void {
     this.userService.currentUserSubject.subscribe((user:User)=>{

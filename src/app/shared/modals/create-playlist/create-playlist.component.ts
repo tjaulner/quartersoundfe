@@ -17,7 +17,9 @@ export class CreatePlaylistComponent implements OnInit {
     about: new FormControl(''),
   })
 
-  constructor(private playlistService:PlaylistService, public dialogRef: MatDialogRef<CreatePlaylistComponent>) { }
+  constructor(
+    private playlistService:PlaylistService,
+    public dialogRef: MatDialogRef<CreatePlaylistComponent>) { }
 
   ngOnInit(): void {
   }

@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PlaylistService } from '../shared/services/playlist.service';
+import { UserService } from '../auth/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EditPlaylistComponent } from '../shared/modals/edit-playlist/edit-playlist.component';
 
 @Component({
   selector: 'app-playlist-detail',
@@ -11,15 +14,32 @@ import { PlaylistService } from '../shared/services/playlist.service';
 export class PlaylistDetailComponent implements OnInit {
 
 
-  constructor(private activatedRoute:ActivatedRoute, private playlistService:PlaylistService, private http:HttpClient) { }
+  constructor(
+    private activatedRoute:ActivatedRoute,
+    private playlistService:PlaylistService,
+    private http:HttpClient,
+    private userService:UserService,
+    private dialogRef:MatDialog,
+    private route:Router
+    ) { }
 
   //defined properties so that template can use them
   playlist: any = null;
   creator: any = null;
   otherPlaylist: any = null;
   profileUser: any = null;
+  currentUser = null;
 
   ngOnInit(): void {
+    //subscribes to changes in playlist information after edit
+    this.playlistService.detailPlaylistSubject.subscribe((updatedPlaylist:any)=>{
+      this.playlist = updatedPlaylist;
+    })
+    //subscribes to the current user info
+    this.userService.currentUserSubject.subscribe((currentUser:any)=> {
+      this.currentUser = currentUser
+    })
+
     //this lets us access the information of the given playlist
     this.activatedRoute.params.subscribe((params)=>{
       const playlistId = params.id;
@@ -31,16 +51,26 @@ export class PlaylistDetailComponent implements OnInit {
           //this.otherPlaylist = res.payload.user.playlists; ///not working
         }
       })
-    }) // delete below possibly, still reports undefined for user's other playlists - may need to just create service
-    //this.activatedRoute.params.subscribe((creator)=>{
-      //const username = creator.username;
-      //this.http.get(`http://localhost:3000/api/v1/users/${creator.username}`).subscribe({
-        //next: (res:any)=>{
-          //this.profileUser = res.payload.user;
-          //this.otherPlaylist = res.payload.user.playlists;
-        //}
-      //})
-    //})
+    })
   }
 
+  openEditPlaylistDialog(playlist){
+    this.dialogRef.open(EditPlaylistComponent, {
+      data: {
+        id: this.playlist.id,
+        playlist_name: this.playlist.playlist_name,
+        about: this.playlist.about
+      },
+      height: '400px',
+      width: '300px'
+    });
+  }
+
+  onDeletePlaylist(){
+    this.playlistService.deletePlaylist(this.playlist.id).subscribe({
+      next: (res) =>{
+        this.route.navigate([`/profile/${this.currentUser.username}`])
+      }
+    })
+  }
 }
