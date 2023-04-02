@@ -60,6 +60,7 @@ export class PlaylistService {
     })
   }
 
+  //this is for the auto/turbo load/refresh after playlist update
   updatedPlaylist(editPlaylist:any){
 
     this.detailPlaylistSubject.next(editPlaylist)

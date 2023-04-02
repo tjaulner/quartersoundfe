@@ -19,7 +19,9 @@ import { HomeComponent } from './home/home.component';
 import { PlaylistDetailComponent } from './playlist-detail/playlist-detail.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CreatePlaylistComponent } from './shared/modals/create-playlist/create-playlist.component';
-import { EditPlaylistComponent } from './shared/modals/edit-playlist/edit-playlist.component'
+import { EditPlaylistComponent } from './shared/modals/edit-playlist/edit-playlist.component';
+import { EditProfileComponent } from './shared/modals/edit-profile/edit-profile.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { EditPlaylistComponent } from './shared/modals/edit-playlist/edit-playli
     PlaylistDetailComponent,
     ProfileComponent,
     CreatePlaylistComponent,
-    EditPlaylistComponent
+    EditPlaylistComponent,
+    EditProfileComponent,
+  
   ],
   imports: [
     BrowserModule,

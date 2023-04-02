@@ -27,8 +27,13 @@
           <mat-card-subtitle class="mx-2 pt-2">Last Updated:</mat-card-subtitle>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button>Friend</button>
-          <button mat-button>Follow</button>
+          <button mat-button *ngIf="profileUser.username !== currentUser.username">FRIEND</button>
+          <button mat-button *ngIf="profileUser.username !== currentUser.username">FOLLOW</button>
+          <button mat-button
+
+            *ngIf="profileUser.id === currentUser.id"
+            (click)="openEditUserDialog()"
+            >EDIT</button>
         </mat-card-actions>
       </mat-card>
     </div>
