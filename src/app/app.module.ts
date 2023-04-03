@@ -21,6 +21,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CreatePlaylistComponent } from './shared/modals/create-playlist/create-playlist.component';
 import { EditPlaylistComponent } from './shared/modals/edit-playlist/edit-playlist.component';
 import { EditProfileComponent } from './shared/modals/edit-profile/edit-profile.component';
+import { MusicSearchComponent } from './shared/modals/music-search/music-search.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { EditProfileComponent } from './shared/modals/edit-profile/edit-profile.
     CreatePlaylistComponent,
     EditPlaylistComponent,
     EditProfileComponent,
+    MusicSearchComponent,
   
   ],
   imports: [

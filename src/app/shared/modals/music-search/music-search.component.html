@@ -1,0 +1,27 @@
+<div class="p-2 bd-highlight">
+  <div class="form-group mr-2">
+    <p>Search for Song or Artist:</p>
+    <div class="input-group input-group-sm">
+      <div class="input-group-prepend">
+        <button style="cursor:pointer"
+          type="submit"
+          mat-raised-button color="primary"
+          class="btn btn-secondary"
+          (click)="onSearchMusic(str.value)">Search</button>
+      </div>
+      <input
+        class="form-control"
+        #str type="text"
+        placeholder="..."
+        (change)="onSearchMusic(str.value)"
+        >
+    </div>
+  </div>
+<hr>
+  <div *ngFor="let musicEl of iterableResults | keyvalue">
+    <ul>
+      <li>{{musicEl.Artist}}</li>
+    </ul>
+    <li>Testing</li>
+  </div>
+</div>
