@@ -9,17 +9,33 @@ import { HttpClient } from '@angular/common/http';
 export class MusicsearchService {
 
   iTunesUrl = 'https://itunes.apple.com/search';
-  results: Observable<Track[]>;
+  results = [];
+  resultsChanged = new Subject<Track []>();
+  //results: Observable<Track[]>; ------------------// old v
 
   constructor(private http:HttpClient) { }
 
-  musicSearchResults(queryString): Observable<Track[]> {
-    if (!this.results) {
-    this.results = this.http.get<Track[]>
-    (`${this.iTunesUrl}?term=${queryString}`);
+  //musicSearchResults(queryString): Observable<Track[]> { -----------// old v
+    //if (!this.results) {
+    //this.results = this.http.get<Track[]>
+    //(`${this.iTunesUrl}?term=${queryString}`);
+    //}
+    //return this.results;
+  //}
+
+  musicSearchResults(queryString) {
+    this.http.get(`${this.iTunesUrl}?term=${queryString}&limit=25&media=music`).subscribe((res: any) => {
+      const data = res.results;
+      this.resultsChanged.next(data);
+    });
+    console.log("service results are:", this.results);
     }
-    return this.results;
+
+  getResults(){
+    return this.results.slice();
   }
+
+
 
 
   }

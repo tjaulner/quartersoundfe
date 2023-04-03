@@ -8,24 +8,34 @@ import { Track } from '../../models/track.model';
   styleUrls: ['./music-search.component.css']
 })
 export class MusicSearchComponent implements OnInit {
-  searchResults: Track[] = null;
+  searchResults = [];
   //@Output() searchQuery: EventEmitter<string> = new EventEmitter<string>();
-  iterableResults: string = null;
+  //iterableResults: string = null;
 
   constructor(private musicService: MusicsearchService) { }
 
   ngOnInit(): void {
+    this.searchResults = this.musicService.getResults(); // returns copy of existing []
+
+    this.musicService.resultsChanged.subscribe((data: any) => {
+      this.searchResults = data;
+      console.log('comp data is:', data);
+      console.log('comp search results:', this.searchResults)
+    })
   }
 
   onSearchMusic(value){
     //this.searchQuery.emit(value);
     //this.musicService.musicSearchResults(value)
 
-    this.musicService.musicSearchResults(value).subscribe((data:Track[])=> {
-      this.searchResults = data;
-      let iterableResults = Object.values(this.searchResults);
-      console.log('iterable is: ', iterableResults)
-    })
+    // old v (testing new v)------
+    //this.musicService.musicSearchResults(value).subscribe((data:Track[])=> {
+      //this.searchResults = data;
+      //let iterableResults = Object.values(this.searchResults);
+      //console.log('iterable is: ', iterableResults)
+    //})
+
+    this.musicService.musicSearchResults(value);
     }
 
 }

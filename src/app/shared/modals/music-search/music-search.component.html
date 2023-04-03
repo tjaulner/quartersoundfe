@@ -18,10 +18,9 @@
     </div>
   </div>
 <hr>
-  <div *ngFor="let musicEl of iterableResults | keyvalue">
+  <div *ngFor="let results of searchResults">
     <ul>
-      <li>{{musicEl.Artist}}</li>
+        <li>{{results.artistName}} || {{results.trackName}}</li>
     </ul>
-    <li>Testing</li>
   </div>
 </div>
