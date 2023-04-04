@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MusicsearchService } from '../../services/musicsearch.service';
 import { Track } from '../../models/track.model';
+import { UserService } from 'src/app/auth/user.service';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-music-search',
@@ -9,33 +11,32 @@ import { Track } from '../../models/track.model';
 })
 export class MusicSearchComponent implements OnInit {
   searchResults = [];
-  //@Output() searchQuery: EventEmitter<string> = new EventEmitter<string>();
-  //iterableResults: string = null;
+  currentUser: User = null;
+
+  //this is for the dialog menu
   panelOpenState = false;
 
-  constructor(private musicService: MusicsearchService) { }
+  constructor(private musicService: MusicsearchService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.searchResults = this.musicService.getResults(); // returns copy of existing []
 
+    // search results
     this.musicService.resultsChanged.subscribe((data: any) => {
       this.searchResults = data;
       console.log('comp data is:', data);
       console.log('comp search results:', this.searchResults)
-    })
+    });
+    //testing for
+    this.userService.currentUserSubject.subscribe((user:User)=>{
+      this.currentUser = user;
+      console.log('music serch on it user info is:', user)
+    });
+
+    this.userService.pullUserPlaylists(this.currentUser.id);
   }
 
   onSearchMusic(value){
-    //this.searchQuery.emit(value);
-    //this.musicService.musicSearchResults(value)
-
-    // old v (testing new v)------
-    //this.musicService.musicSearchResults(value).subscribe((data:Track[])=> {
-      //this.searchResults = data;
-      //let iterableResults = Object.values(this.searchResults);
-      //console.log('iterable is: ', iterableResults)
-    //})
-
     this.musicService.musicSearchResults(value);
     }
 

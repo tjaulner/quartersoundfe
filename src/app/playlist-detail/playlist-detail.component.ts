@@ -29,6 +29,9 @@ export class PlaylistDetailComponent implements OnInit {
   otherPlaylist: any = null;
   profileUser: any = null;
   currentUser = null;
+  // setup specfically to pull playlist detail from user (trial)
+  usersPlaylists: [] = [];
+  userId: number = null;
 
   ngOnInit(): void {
     //subscribes to changes in playlist information after edit
@@ -38,21 +41,38 @@ export class PlaylistDetailComponent implements OnInit {
     //subscribes to the current user info
     this.userService.currentUserSubject.subscribe((currentUser:any)=> {
       this.currentUser = currentUser
+      console.log(currentUser)
     })
+
 
     //this lets us access the information of the given playlist
     this.activatedRoute.params.subscribe((params)=>{
       const playlistId = params.id;
       this.playlistService.fetchPlaylist(playlistId).subscribe({
         next: (res: any)=>{
-          console.log('playlistdetail is:', res)
+          console.log('current user', this.currentUser)
           this.playlist = res.payload.playlist;
           this.creator = res.payload.playlist.user;
           this.profileUser = res.payload.user;
-          
-        }
-      })
+          this.userId = res.payload.playlist.user.id;
+          // not sure why, but needed to pull data this way?
+          this.userService.getCurrentUser(this.userId)
+          this.usersPlaylists = res.pa
+          console.log(this.userId)
+            this.userService.getCurrentUser(this.userId) // not working at log off 4/3
+            this.userService.playlistUserSubject.subscribe((data:[])=> {
+            this.usersPlaylists = data;
+            console.log('user service playlist detail is?', data)
     })
+        }
+      })})
+
+      //subscribing to detail on user for playlists
+    //this.userService.getCurrentUser(this.userId) // not working at log off 4/3
+    //this.userService.playlistUserSubject.subscribe((data:any)=> {
+      //this.usersPlaylists = data;
+      //console.log('user service playlist detail is?', data)
+    //})
 
 
   }

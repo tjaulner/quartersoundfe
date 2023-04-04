@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatMenuModule} from '@angular/material/menu';
 import { SignupComponent } from './auth/signup/signup.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -52,6 +53,7 @@ import { PlaylistViewComponent } from './playlist-view/playlist-view.component';
     MatButtonModule,
     MatDialogModule,
     MatListModule,
+    MatMenuModule,
     MatExpansionModule,
     ReactiveFormsModule,
     HttpClientModule

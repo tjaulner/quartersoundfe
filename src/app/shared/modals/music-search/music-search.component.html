@@ -1,4 +1,4 @@
-<div class="p-2 bd-highlight">
+<div class="p-2 bd-highlight" >
   <div class="form-group mr-2">
     <p>Search for Song or Artist:</p>
     <div class="input-group input-group-sm">
@@ -21,7 +21,7 @@
   <div *ngFor="let results of searchResults" style="width: 100%;">
     <ul class="list-group list-group-flush">
         <li class="list-group-item">
-          <mat-accordion>
+          <mat-accordion style="background-color:#F5F8FA">
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
               <mat-expansion-panel-header class="d-flex justify-content-start" style="height: 75px;">
                 <mat-panel-title>
@@ -41,7 +41,12 @@
                     class="btn btn-secondary btn-sm mt-2"
                     mat-raised-button color="accent"
                     style="cursor: pointer"
+                    [matMenuTriggerFor]="menu"
                     >Add to Libary</button>
+                    <mat-menu #menu="matMenu">
+                      <button mat-menu-item>Item 1</button>
+                      <button mat-menu-item>Item 2</button>
+                    </mat-menu>
                   </div>
                   <div class="col-md-6 justify-content-start">
                     <div class="card-body">
