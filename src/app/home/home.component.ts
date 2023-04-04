@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
   openMusicSearchDialog(){
     this.dialogRef.open(MusicSearchComponent, {
       height: '800px',
-      width: '600px'
+      width: '700px'
     });
   }
 

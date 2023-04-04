@@ -11,6 +11,7 @@ export class MusicSearchComponent implements OnInit {
   searchResults = [];
   //@Output() searchQuery: EventEmitter<string> = new EventEmitter<string>();
   //iterableResults: string = null;
+  panelOpenState = false;
 
   constructor(private musicService: MusicsearchService) { }
 

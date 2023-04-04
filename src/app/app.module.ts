@@ -10,6 +10,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { SignupComponent } from './auth/signup/signup.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -22,6 +23,7 @@ import { CreatePlaylistComponent } from './shared/modals/create-playlist/create-
 import { EditPlaylistComponent } from './shared/modals/edit-playlist/edit-playlist.component';
 import { EditProfileComponent } from './shared/modals/edit-profile/edit-profile.component';
 import { MusicSearchComponent } from './shared/modals/music-search/music-search.component';
+import { PlaylistViewComponent } from './playlist-view/playlist-view.component';
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import { MusicSearchComponent } from './shared/modals/music-search/music-search.
     EditPlaylistComponent,
     EditProfileComponent,
     MusicSearchComponent,
-  
+    PlaylistViewComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,7 @@ import { MusicSearchComponent } from './shared/modals/music-search/music-search.
     MatButtonModule,
     MatDialogModule,
     MatListModule,
+    MatExpansionModule,
     ReactiveFormsModule,
     HttpClientModule
   ],

@@ -45,13 +45,16 @@ export class PlaylistDetailComponent implements OnInit {
       const playlistId = params.id;
       this.playlistService.fetchPlaylist(playlistId).subscribe({
         next: (res: any)=>{
-          console.log(res)
+          console.log('playlistdetail is:', res)
           this.playlist = res.payload.playlist;
           this.creator = res.payload.playlist.user;
-          //this.otherPlaylist = res.payload.user.playlists; ///not working
+          this.profileUser = res.payload.user;
+          
         }
       })
     })
+
+
   }
 
   openEditPlaylistDialog(playlist){

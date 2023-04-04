@@ -18,9 +18,57 @@
     </div>
   </div>
 <hr>
-  <div *ngFor="let results of searchResults">
-    <ul>
-        <li>{{results.artistName}} || {{results.trackName}}</li>
+  <div *ngFor="let results of searchResults" style="width: 100%;">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header class="d-flex justify-content-start" style="height: 75px;">
+                <mat-panel-title>
+                  <h4 class="card-title">"{{ results.trackName }}" .... {{ results.artistName }}</h4>
+                </mat-panel-title>
+                <mat-panel-description class="d-flex justify-content-end">
+                  See More...
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div class="container bg-white rounded-lg mt-3">
+                <div class="row">
+                  <div class="col-md-2 justify-content-center">
+                    <div class="border-0">
+                      <img src="{{results.artworkUrl60}}" alt="{{results.collectionName}}">
+                    </div>
+                    <button
+                    class="btn btn-secondary btn-sm mt-2"
+                    mat-raised-button color="accent"
+                    style="cursor: pointer"
+                    >Add to Libary</button>
+                  </div>
+                  <div class="col-md-6 justify-content-start">
+                    <div class="card-body">
+                      <h5 class="card-title">"{{ results.trackName }}"</h5>
+                      <p class="card-text">{{ results.artistName }}</p>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card-body mt-2">
+                      <p class="card-text">Album  |  "{{ results.collectionName }}"</p>
+                      <p class="card-text"
+                        style="font-size: 14px;"
+                        >{{ results.primaryGenreName }} | {{ results.releaseDate | date:'shortDate' }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <audio controls>
+                    <source [src]="results.previewUrl" type="audio/ogg">
+                    <source [src]="results.previewUrl" type="audio/mpeg">
+                    </audio>
+                </div>
+              </div>
+              </mat-expansion-panel>
+          </mat-accordion>
+        </li>
+
     </ul>
   </div>
 </div>

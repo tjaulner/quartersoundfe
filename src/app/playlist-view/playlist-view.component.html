@@ -1,0 +1,24 @@
+<div class="container-fluid min-vh-90 d-flex flex-column">
+  <div class="row">
+    <div class="col-md-12 pt-3" >
+    <div class="row">
+    <div class="col-md-12 pt-3">
+      <mat-card *ngIf="profileUser">
+        <mat-card-header>
+          <mat-card-title></mat-card-title>
+          <mat-card-subtitle class="mx-2"></mat-card-subtitle>
+
+        </mat-card-header>
+        <mat-card-content class="mx-2">
+          <mat-card-title><p>Current Playlists:</p></mat-card-title>
+
+          <mat-list role="list" *ngFor="let plist of profilePlaylists" routerLink="/playlists/{{plist.id}}" style="cursor: pointer">
+            <mat-list-item role="listitem">{{plist.playlist_name}}</mat-list-item>
+          </mat-list>
+          <mat-divider></mat-divider>
+          <mat-card-subtitle class="mx-2 pt-2">Last Updated:</mat-card-subtitle>
+        </mat-card-content>
+      </mat-card>
+      </div>
+    </div>
+</div>
