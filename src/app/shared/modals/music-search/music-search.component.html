@@ -42,6 +42,7 @@
                     mat-raised-button color="accent"
                     style="cursor: pointer"
                     [matMenuTriggerFor]="menu"
+                    (click)="saveButton(results)"
                     >Add to Libary</button>
                     <mat-menu #menu="matMenu">
                       <button mat-menu-item>Item 1</button>

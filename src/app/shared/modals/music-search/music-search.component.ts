@@ -12,6 +12,7 @@ import { User } from '../../models/user.model';
 export class MusicSearchComponent implements OnInit {
   searchResults = [];
   currentUser: User = null;
+  tempLibrary = [];
 
   //this is for the dialog menu
   panelOpenState = false;
@@ -39,5 +40,12 @@ export class MusicSearchComponent implements OnInit {
   onSearchMusic(value){
     this.musicService.musicSearchResults(value);
     }
+
+  saveButton(results){
+    this.musicService.saveResult(results)
+    this.tempLibrary.push(results)
+    console.log('temp library is...', this.tempLibrary)
+  }
+
 
 }
