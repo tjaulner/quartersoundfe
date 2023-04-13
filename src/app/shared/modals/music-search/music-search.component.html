@@ -25,7 +25,7 @@
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
               <mat-expansion-panel-header class="d-flex justify-content-start" style="height: 75px;">
                 <mat-panel-title>
-                  <h4 class="card-title">"{{ results.trackName }}" .... {{ results.artistName }}</h4>
+                  <h4 class="card-title">"{{ results.trackname }}" .... {{ results.artist }}</h4>
                 </mat-panel-title>
                 <mat-panel-description class="d-flex justify-content-end">
                   See More...
@@ -35,7 +35,7 @@
                 <div class="row">
                   <div class="col-md-2 justify-content-center">
                     <div class="border-0">
-                      <img src="{{results.artworkUrl60}}" alt="{{results.collectionName}}">
+                      <img src="{{results.album_img_url}}" alt="{{results.album}}">
                     </div>
                     <button
                     class="btn btn-secondary btn-sm mt-2"
@@ -51,23 +51,23 @@
                   </div>
                   <div class="col-md-6 justify-content-start">
                     <div class="card-body">
-                      <h5 class="card-title">"{{ results.trackName }}"</h5>
-                      <p class="card-text">{{ results.artistName }}</p>
+                      <h5 class="card-title">"{{ results.trackname }}"</h5>
+                      <p class="card-text">{{ results.artist }}</p>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="card-body mt-2">
-                      <p class="card-text">Album  |  "{{ results.collectionName }}"</p>
+                      <p class="card-text">Album  |  "{{ results.album }}"</p>
                       <p class="card-text"
                         style="font-size: 14px;"
-                        >{{ results.primaryGenreName }} | {{ results.releaseDate | date:'shortDate' }}</p>
+                        >{{ results.genre }} | {{ results.year | date:'shortDate' }}</p>
                     </div>
                   </div>
                 </div>
                 <div class="row mt-2">
                   <audio controls>
-                    <source [src]="results.previewUrl" type="audio/ogg">
-                    <source [src]="results.previewUrl" type="audio/mpeg">
+                    <source [src]="results.play_preview_url" type="audio/ogg">
+                    <source [src]="results.play_preview_url" type="audio/mpeg">
                     </audio>
                 </div>
               </div>

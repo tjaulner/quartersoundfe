@@ -43,8 +43,7 @@ export class MusicSearchComponent implements OnInit {
 
   saveButton(results){
     this.musicService.saveResult(results)
-    this.tempLibrary.push(results)
-    console.log('temp library is...', this.tempLibrary)
+    
   }
 
 
