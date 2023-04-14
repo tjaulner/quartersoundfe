@@ -2,6 +2,7 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable, Subject, map, pipe } from 'rxjs';
 import { Track } from '../models/track.model';
 import { HttpClient } from '@angular/common/http';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,7 @@ export class MusicsearchService {
           year: track.releaseDate,
           album_img_url: track.artworkUrl60,
           play_preview_url: track.previewUrl,
+          playlist: null,
         }
       });
       this.resultsChanged.next(data)
@@ -43,9 +45,9 @@ export class MusicsearchService {
 
   // saves a track to this local array as test of api save
   saveResult(results: Track){
-    this.savedResults.push(results);
-      console.log(results)
-      console.log(this.savedResults)
 
+    this.savedResults.push(results);
+      //console.log(results)
+      console.log('saved result []', this.savedResults)
   }
 }

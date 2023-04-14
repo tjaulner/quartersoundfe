@@ -1,13 +1,15 @@
 export class Track{
+  
   constructor(
     public id:number,
     public artist:string,
-    public artworkUrl60: string,
-    public collectionName:string,
-    public previewUrl:string,
-    public primaryGenreName: string,
-    public releaseDate: string,
-    public trackName:string,
+    public trackname:string,
+    public album_img_url: string,
+    public album:string,
+    public play_preview_url:string,
+    public genre: string,
+    public year: string,
+    public playlist: string,
     ){}
 
  }

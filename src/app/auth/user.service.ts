@@ -33,7 +33,8 @@ export class UserService {
   updatedUser(editUser:any){
 
   }
-  // not sure this ended up being used anywerhe?
+  // using in music search component to load user's playlist with user info
+  // not sure why other current user subject doesnt already do this??
   pullUserPlaylists(id) {
     const token = JSON.parse(localStorage.getItem('token'));
     return this.http.get(`http://localhost:3000/api/v1/users/${id}`, {
@@ -43,8 +44,9 @@ export class UserService {
     }).subscribe((res:any)=>{
       if(res.success){
         console.log('pull user method:', res.payload.user)
-        //this.userService.setCurrentUser(res.payload.user);
+        //this.setCurrentUser(res.payload.user);
         //console.log(res);
+        this.currentUserSubject.next(res.payload.user)
 
       }
     })

@@ -37,17 +37,19 @@
                     <div class="border-0">
                       <img src="{{results.album_img_url}}" alt="{{results.album}}">
                     </div>
+                    <div>
                     <button
                     class="btn btn-secondary btn-sm mt-2"
                     mat-raised-button color="accent"
                     style="cursor: pointer"
                     [matMenuTriggerFor]="menu"
-                    (click)="saveButton(results)"
                     >Add to Libary</button>
-                    <mat-menu #menu="matMenu">
-                      <button mat-menu-item>Item 1</button>
-                      <button mat-menu-item>Item 2</button>
-                    </mat-menu>
+                      <mat-menu #menu="matMenu">
+                        <div *ngFor="let plist of profilePlaylists">
+                          <button mat-menu-item (click)="saveButton(results, playlist_name)">{{plist.playlist_name}}</button>
+                        </div>
+                      </mat-menu>
+                    </div>
                   </div>
                   <div class="col-md-6 justify-content-start">
                     <div class="card-body">
