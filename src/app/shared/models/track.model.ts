@@ -1,5 +1,5 @@
 export class Track{
-  
+
   constructor(
     public id:number,
     public artist:string,
@@ -10,6 +10,8 @@ export class Track{
     public genre: string,
     public year: string,
     public playlist: string,
+    public playlist_id: bigint,
+    public user_id: bigint
     ){}
 
  }

@@ -46,7 +46,7 @@
                     >Add to Libary</button>
                       <mat-menu #menu="matMenu">
                         <div *ngFor="let plist of profilePlaylists">
-                          <button mat-menu-item (click)="saveButton(results, playlist_name)">{{plist.playlist_name}}</button>
+                          <button mat-menu-item (click)="saveButton(results, plist)">{{plist.playlist_name}}</button>
                         </div>
                       </mat-menu>
                     </div>

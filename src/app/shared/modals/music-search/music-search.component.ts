@@ -17,6 +17,7 @@ export class MusicSearchComponent implements OnInit {
   panelOpenState = false;
 
   profilePlaylists: any = null;
+  errors = [];
 
   constructor(
     private musicService: MusicsearchService,
@@ -48,14 +49,21 @@ export class MusicSearchComponent implements OnInit {
     this.musicService.musicSearchResults(value);
     }
 
-  saveButton(results, playlist_name){
-    playlist_name = this.profilePlaylists.playlist_name // does not work yet 0413
-    // trying to get the playlist name (from selection) to tie in with results
-    // may not need this in the end - solution may be from back end put anyways..?
-    //results.playlist = this.profilePlaylists.playlist_name
-    this.musicService.saveResult(results)
-    console.log('playlist name?', this.profilePlaylists.playlist_name)
+  saveButton(results, plist){
+    //results.playlist = plist;
+    results.playlist_id = plist.id;
+    results.user_id = this.currentUser.id;
+    this.musicService.saveResult(results).subscribe({
+      next: (results) => {
 
+        console.log(results);
+
+      },
+      error: (error) => {
+        this.errors = error.error.errors;
+        console.log(error);
+      }
+    })
   }
 
 

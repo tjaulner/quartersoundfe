@@ -33,6 +33,7 @@ export class PlaylistDetailComponent implements OnInit {
   usersPlaylists: [] = [];
   userId: number = null;
 
+
   ngOnInit(): void {
     //subscribes to changes in playlist information after edit
     this.playlistService.detailPlaylistSubject.subscribe((updatedPlaylist:any)=>{
@@ -44,7 +45,6 @@ export class PlaylistDetailComponent implements OnInit {
       console.log(currentUser)
     })
 
-
     //this lets us access the information of the given playlist
     this.activatedRoute.params.subscribe((params)=>{
       const playlistId = params.id;
@@ -55,6 +55,7 @@ export class PlaylistDetailComponent implements OnInit {
           this.creator = res.payload.playlist.user;
           this.profileUser = res.payload.user;
           this.userId = res.payload.playlist.user.id;
+
           // not sure why, but needed to pull data this way?
           this.userService.getCurrentUser(this.userId)
           this.usersPlaylists = res.pa
@@ -66,13 +67,6 @@ export class PlaylistDetailComponent implements OnInit {
     })
         }
       })})
-
-      //subscribing to detail on user for playlists
-    //this.userService.getCurrentUser(this.userId) // not working at log off 4/3
-    //this.userService.playlistUserSubject.subscribe((data:any)=> {
-      //this.usersPlaylists = data;
-      //console.log('user service playlist detail is?', data)
-    //})
 
 
   }
