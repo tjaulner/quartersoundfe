@@ -79,5 +79,25 @@ export class PlaylistService {
     })
   }
 
+  fetchTracks(){
+    const token = JSON.parse(localStorage.getItem('token'));
+
+    return this.http.get(`${URL}tracks/`, {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      }
+    })
+  }
+
+  deleteTrack(id){
+    const token = JSON.parse(localStorage.getItem('token'));
+
+    return this.http.delete(`http://localhost:3000/api/v1/tracks/${id}`,  {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      }
+    })
+  }
+
 
 }

@@ -33,9 +33,9 @@ export class AuthService {
       }
     }).subscribe((res:any)=>{
       if(res.success){
-        console.log(res.payload.user)
+        //console.log(res.payload.user)
         this.userService.setCurrentUser(res.payload.user);
-        console.log(res);
+        //console.log(res);
         // navigate to home - turned off 3/27?
         //this.route.navigate(['/home'])
       }

@@ -37,49 +37,91 @@
     </div>
   </div>
 
-  <div class="row align-items-start">
+  <div class="row align-items-start" *ngIf="playlistTracks">
     <div class="col-md-8 pt-3" >
-      <mat-card *ngIf="playlist" style="min-height: 500px;">
-        <mat-card-header>
-          <mat-card-title>Track Listing:</mat-card-title>
-          <mat-card-subtitle class="mx-2"></mat-card-subtitle>
-        </mat-card-header><mat-divider></mat-divider>
-        <mat-card-content class="mt-2">
-          <mat-list role="list" style="cursor: pointer">
-            <mat-list-item role="listitem"></mat-list-item>
-
-          </mat-list>
-          <mat-card-subtitle class="mx-2 pt-2"></mat-card-subtitle>
-        </mat-card-content>
-        <mat-card-actions>
-        </mat-card-actions>
-      </mat-card>
+    <div *ngFor="let tlist of playlistTracks">
+      <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngIf="playlist.playlist_name === tlist.playlist.playlist_name">
+            <mat-accordion style="background-color:#F5F8FA">
+              <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header class="d-flex justify-content-start" style="height: 75px;">
+                  <mat-panel-title>
+                    <h4 class="card-title">"{{ tlist.trackname }}" .... {{ tlist.artist }}</h4>
+                  </mat-panel-title>
+                  <mat-panel-description class="d-flex justify-content-end">
+                    See More...
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="container bg-white rounded-lg mt-3">
+                  <div class="row">
+                    <div class="col-md-2 justify-content-center">
+                      <div class="border-0">
+                        <img src="{{tlist.album_img_url}}" alt="{{tlist.album}}">
+                      </div>
+                      <div>
+                      <button
+                      class="btn btn-secondary btn-sm mt-2"
+                      mat-raised-button color="accent"
+                      style="cursor: pointer"
+                      [matMenuTriggerFor]="menu"
+                      >Options</button>
+                        <mat-menu #menu="matMenu">
+                          <div>
+                            <button mat-button
+                            *ngIf="creator && currentUser && creator.username === currentUser.username"
+                            (click)="onDeleteTrack(tlist)"
+                            >DELETE</button>
+                          </div>
+                        </mat-menu>
+                      </div>
+                    </div>
+                    <div class="col-md-6 justify-content-start">
+                      <div class="card-body">
+                        <p>{{tlist.id}}</p>
+                        <h5 class="card-title">"{{ tlist.trackname }}"</h5>
+                        <p class="card-text">{{ tlist.artist }}</p>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="card-body mt-2">
+                        <p class="card-text">Album  |  "{{ tlist.album }}"</p>
+                        <p class="card-text"
+                          style="font-size: 14px;"
+                          >{{ tlist.genre }} | {{ tlist.year | date:'shortDate' }}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-2">
+                    <audio controls>
+                      <source [src]="tlist.play_preview_url" type="audio/ogg">
+                      <source [src]="tlist.play_preview_url" type="audio/mpeg">
+                      </audio>
+                  </div>
+                </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+          </li>
+      </ul>
     </div>
-
-
-
+  </div>
 
     <div class="col-md-3 pt-3" >
       <mat-card style="min-height: 500px;">
         <mat-card-header>
           <mat-card-title>Other Playlists:</mat-card-title>
           <mat-card-subtitle class="mx-2"></mat-card-subtitle>
-        </mat-card-header><mat-divider></mat-divider>
-        <mat-card-content class="mt-2">
-          <p></p>
-          <ol class="list-group list-group-numbered p-1" *ngFor="let plist of usersPlaylists"  >
-            <div *ngIf="plist.playlist_name !== playlist.playlist_name">
-              <li class="list-group-item d-flex justify-content-between align-items-start">
-              <div class="ms-2 me-auto" >
+        </mat-card-header>
+        <mat-divider class="pt-1 pb-2"></mat-divider>
+        <mat-card-content>
+          <div *ngFor="let plist of usersPlaylists">
+           <ul class="list-group list-group-flush pt-2">
+              <li class="list-group-item d-flex justify-content-between align-items-start" *ngIf="plist.playlist_name !== playlist.playlist_name">
                 <a class="text-decoration-none text-body"routerLink="/playlists/{{plist.id}}">
                 <div class="fw-bold">{{plist.playlist_name}} </div></a>
-
-              </div>
               <span class="badge bg-primary rounded-pill">14</span>
             </li>
-            </div>
-
-            </ol>
+          </ul>
+          </div>
 
           <mat-card-subtitle class="mx-2 pt-2"></mat-card-subtitle>
         </mat-card-content>

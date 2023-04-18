@@ -43,7 +43,7 @@ export class UserService {
       }
     }).subscribe((res:any)=>{
       if(res.success){
-        console.log('pull user method:', res.payload.user)
+        //console.log('pull user method:', res.payload.user)
         //this.setCurrentUser(res.payload.user);
         //console.log(res);
         this.currentUserSubject.next(res.payload.user)
@@ -61,9 +61,9 @@ export class UserService {
       }
     }).subscribe((res:any)=>{
       if(res.success){
-        console.log('get current user method in user service is:', res.payload.user.playlists)
+        //console.log('get current user method in user service is:', res.payload.user.playlists)
         //this.playlistUserSubject = res.payload.user.playlists;
-        console.log(this.playlistUserSubject)
+        //console.log(this.playlistUserSubject)
         //this.setPlaylistUserSubject(this.playlistUserSubject)
         this.playlistUserSubject.next(res.payload.user.playlists)
       }

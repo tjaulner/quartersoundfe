@@ -32,7 +32,9 @@ export class PlaylistDetailComponent implements OnInit {
   // setup specfically to pull playlist detail from user (trial)
   usersPlaylists: [] = [];
   userId: number = null;
-
+  playlistTracks: [] = [];
+  panelOpenState = false;
+  track: any = null;
 
   ngOnInit(): void {
     //subscribes to changes in playlist information after edit
@@ -50,24 +52,30 @@ export class PlaylistDetailComponent implements OnInit {
       const playlistId = params.id;
       this.playlistService.fetchPlaylist(playlistId).subscribe({
         next: (res: any)=>{
-          console.log('current user', this.currentUser)
+          //console.log('current user', this.currentUser)
           this.playlist = res.payload.playlist;
           this.creator = res.payload.playlist.user;
           this.profileUser = res.payload.user;
           this.userId = res.payload.playlist.user.id;
-
+          console.log('playlist info is', this.playlist)
           // not sure why, but needed to pull data this way?
           this.userService.getCurrentUser(this.userId)
           this.usersPlaylists = res.pa
-          console.log(this.userId)
+          //console.log(this.userId)
             this.userService.getCurrentUser(this.userId) // not working at log off 4/3
             this.userService.playlistUserSubject.subscribe((data:[])=> {
             this.usersPlaylists = data;
-            console.log('user service playlist detail is?', data)
+            //console.log('user service playlist detail is?', data)
     })
         }
       })})
 
+      this.playlistService.fetchTracks().subscribe({
+        next: (res: any)=>{
+          console.log(res)
+          this.playlistTracks = res.payload.tracks
+        }
+      })
 
   }
 
@@ -89,5 +97,14 @@ export class PlaylistDetailComponent implements OnInit {
         this.route.navigate([`/profile/${this.currentUser.username}`])
       }
     })
+  }
+
+  onDeleteTrack(tlist){
+    this.playlistService.deleteTrack(tlist.id).subscribe({
+      next: (res) => {
+        //currently this will delete the track but the route navigate does not work - see console for details
+        this.route.navigate([`/playlists/${this.playlist.id}`])
+    }}
+    )
   }
 }
