@@ -25,6 +25,8 @@ import { EditPlaylistComponent } from './shared/modals/edit-playlist/edit-playli
 import { EditProfileComponent } from './shared/modals/edit-profile/edit-profile.component';
 import { MusicSearchComponent } from './shared/modals/music-search/music-search.component';
 import { PlaylistViewComponent } from './playlist-view/playlist-view.component';
+import { WallComponent } from './wall/wall.component';
+import { CreatePostComponent } from './shared/modals/create-post/create-post.component';
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { PlaylistViewComponent } from './playlist-view/playlist-view.component';
     EditProfileComponent,
     MusicSearchComponent,
     PlaylistViewComponent,
+    WallComponent,
+    CreatePostComponent,
 
   ],
   imports: [

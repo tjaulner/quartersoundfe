@@ -7,6 +7,7 @@ import { PlaylistDetailComponent } from './playlist-detail/playlist-detail.compo
 import { ProfileComponent } from './profile/profile.component';
 import { CreatePlaylistComponent } from './shared/modals/create-playlist/create-playlist.component';
 import { PlaylistViewComponent } from './playlist-view/playlist-view.component';
+import { WallComponent } from './wall/wall.component';
 
 const routes: Routes = [
   { path: "signup", component: SignupComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'playlists/:id', component: PlaylistDetailComponent},
   { path: 'profile/:username', component: ProfileComponent},
   { path: 'createplaylist', component: CreatePlaylistComponent},
-  { path: 'viewplaylists/:username', component: PlaylistViewComponent}
+  { path: 'viewplaylists/:username', component: PlaylistViewComponent},
+  { path: 'wall', component: WallComponent}
 ];
 
 @NgModule({

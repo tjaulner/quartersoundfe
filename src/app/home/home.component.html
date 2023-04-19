@@ -7,6 +7,8 @@
       <button mat-stroked-button color="primary"
       (click)="openMusicSearchDialog()"
       >Search</button>
+      <hr>
+      <app-wall *ngIf="currentUser"></app-wall>
     </div>
 
     <div class="col-md-3 pt-3" id="othercols" style="height:90vh;">

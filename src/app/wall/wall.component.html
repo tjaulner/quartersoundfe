@@ -1,0 +1,19 @@
+<div class="container-fluid min-vh-90 d-flex flex-column">
+  <div class="row">
+    <div class="col-md-12 pt-3" >
+      <h5>Wall</h5>
+      <button mat-stroked-button color="primary"
+      (click)="openPostDialog()"
+      >New Post</button>
+    </div>
+  </div>
+  <div class="row">
+    <ul *ngFor="let post of allPosts">
+      <li>{{post.body}}</li><button (click)="onDeletePost(post)">Delete</button>
+    </ul>
+    </div>
+  <div class="row">
+    <p></p>
+    </div>
+
+</div>
