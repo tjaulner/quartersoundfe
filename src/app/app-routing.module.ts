@@ -17,7 +17,8 @@ const routes: Routes = [
   { path: 'profile/:username', component: ProfileComponent},
   { path: 'createplaylist', component: CreatePlaylistComponent},
   { path: 'viewplaylists/:username', component: PlaylistViewComponent},
-  { path: 'wall', component: WallComponent}
+  { path: 'wall', component: WallComponent},
+
 ];
 
 @NgModule({

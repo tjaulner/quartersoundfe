@@ -1,13 +1,8 @@
-<div class="container-fluid min-vh-90 d-flex flex-column">
+<div class="container-fluid d-flex flex-column">
   <div class="row align-items-start">
 
-    <div class="col-md-9 pt-3" style="height:90vh;">
-      <h5>quarterSound....yadayada</h5><hr>
-      <h3>Find New Music:</h3>
-      <button mat-stroked-button color="primary"
-      (click)="openMusicSearchDialog()"
-      >Search</button>
-      <hr>
+    <div class="col-md-9 pt-3" >
+
       <app-wall *ngIf="currentUser"></app-wall>
     </div>
 

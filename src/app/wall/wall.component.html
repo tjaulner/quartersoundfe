@@ -1,17 +1,51 @@
-<div class="container-fluid min-vh-90 d-flex flex-column">
+<div class="container-fluid  d-flex flex-column">
   <div class="row">
-    <div class="col-md-12 pt-3" >
-      <h5>Wall</h5>
-      <button mat-stroked-button color="primary"
-      (click)="openPostDialog()"
-      >New Post</button>
+    <div class="col-md-12 min-vh-90 pt-3 flex" >
+          <mat-form-field style="width: 100%;">
+            <mat-label style="padding-left: 15px; padding-top: 5px; font-size: 14px; color:rgb(243, 249, 254);">What's on your mind, <em>{{currentUser.first_name}}?</em></mat-label>
+        <input
+        (click)="openPostDialog()"
+        style="height: 25px; background: #3d5363; border-radius: 35px;" matInput/>
+        </mat-form-field>
     </div>
   </div>
-  <div class="row">
-    <ul *ngFor="let post of allPosts">
-      <li>{{post.body}}</li><button (click)="onDeletePost(post)">Delete</button>
-    </ul>
+  <div class="row"*ngFor="let post of allPosts">
+    <div class="p-2">
+    <mat-card class="post-card border-bottom border-top rounded" style="background: aliceblue;">
+      <mat-card-header style="width: 100%;">
+        <div class="f-flex flex-row">
+          <img src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+            style="border-radius: 50%; max-height: 45px" >
+        </div>
+        <div class="row">
+          <mat-card-subtitle style="font-size: 16px;">{{post.user.first_name}} {{post.user.last_name}}</mat-card-subtitle>
+          <mat-card-subtitle style="font-size: 10px;">{{post.created_at | date:'shortDate'}}</mat-card-subtitle>
+        </div>
+      </mat-card-header>
+      <mat-card-content style="padding-left: 30px;">
+        <p>{{post.body}}</p>
+      </mat-card-content>
+      <mat-form-field style="width: 95%;padding-left: 30px;">
+        <mat-label style="padding-left: 15px; font-size: 14px; color:rgb(243, 249, 254)">Write a comment...</mat-label>
+        <input
+
+        style="height: 22px; background-color:rgb(89, 109, 109); border-radius: 35px; color:rgb(243, 249, 254)" matInput/>
+      </mat-form-field>
+      <mat-card-actions style="padding-left: 30px;">
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+        <button mat-button
+        *ngIf="post.user.id === currentUser.id"
+        (click)="openEditPostDialog(post)">EDIT</button>
+        <button mat-button
+        *ngIf="post.user.id === currentUser.id"
+        (click)="onDeletePost(post)">DELETE</button>
+      </mat-card-actions>
+
+    </mat-card>
     </div>
+
+  </div>
   <div class="row">
     <p></p>
     </div>

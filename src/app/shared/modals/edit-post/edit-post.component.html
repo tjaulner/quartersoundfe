@@ -1,12 +1,12 @@
-<h1 mat-dialog-title class="p-2" style="color: #F5F8FA !important;">Create Post</h1>
+<h1 mat-dialog-title class="p-2" style="color: #F5F8FA !important;">Edit Post</h1>
   <div mat-dialog-content style="font-size: 14px; height: 70%">
-    <form [formGroup]="postFormGroup" (ngSubmit)="onSubmit()">
+    <form [formGroup]="editPostForm" (ngSubmit)="onSubmit()">
       <mat-form-field style="width: 100%">
         <textarea formControlName="body" class="form-control" style="height: 45px;" type="text" matInput></textarea>
       </mat-form-field>
       <p class="text-danger" *ngFor="let err of errors">{{err}}</p>
   <div mat-dialog-actions class="p-1">
-    <button mat-raised-button color="primary" type="submit">Post</button>
+    <button mat-raised-button color="primary" type="submit">Update</button>
     <button mat-raised-button color="accent" mat-dialog-close>Close</button>
   </div>
 </form>

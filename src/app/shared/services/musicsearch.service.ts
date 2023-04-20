@@ -46,11 +46,6 @@ export class MusicsearchService {
 
   //
   saveResult(results: Track){
-    //this.savedResults.push(results);
-      //console.log(results)
-      //console.log('saved result []', this.savedResults)
-
-    //testing this - results do try to post, getting null for playlist_id
     const token = this.authService.getToken();
 
     return this.http.post("http://localhost:3000/api/v1/tracks", results, {
@@ -58,5 +53,10 @@ export class MusicsearchService {
         Authorization: `Bearer ${token.value}`
       },
     })
+
+  }
+
+  reloadPage(){
+    window.location.reload()
   }
 }

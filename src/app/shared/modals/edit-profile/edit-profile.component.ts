@@ -46,10 +46,14 @@ export class EditProfileComponent implements OnInit {
       next: (res:any)=>{
         console.log('user res is:', res)
         this.dialogRef.close()
-        this.route.navigate(['/home'])
+        this.reloadPage();
       }
     })
 
+  }
+
+  reloadPage(){
+    window.location.reload()
   }
 
 }

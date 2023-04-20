@@ -3,6 +3,9 @@ import { MusicsearchService } from '../../services/musicsearch.service';
 import { Track } from '../../models/track.model';
 import { UserService } from 'src/app/auth/user.service';
 import { User } from '../../models/user.model';
+import { PlaylistService } from '../../services/playlist.service';
+import { Router } from '@angular/router';
+import { MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -22,6 +25,9 @@ export class MusicSearchComponent implements OnInit {
   constructor(
     private musicService: MusicsearchService,
     private userService: UserService,
+    private playlistService: PlaylistService,
+    private route:Router,
+    public dialogRef: MatDialogRef<MusicSearchComponent>
     ) { }
 
   ngOnInit(): void {
@@ -57,13 +63,16 @@ export class MusicSearchComponent implements OnInit {
       next: (results) => {
 
         console.log(results);
-
+        this.dialogRef.close()
+        this.route.navigate([`/playlists/${plist.id}`])
+        this.musicService.reloadPage()
       },
       error: (error) => {
         this.errors = error.error.errors;
         console.log(error);
       }
     })
+
   }
 
 

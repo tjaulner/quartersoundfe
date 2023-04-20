@@ -5,6 +5,8 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { UserService } from 'src/app/auth/user.service';
 import { CreatePlaylistComponent } from '../modals/create-playlist/create-playlist.component';
 import { User } from '../models/user.model';
+import { CreatePostComponent } from '../modals/create-post/create-post.component';
+import { MusicSearchComponent } from '../modals/music-search/music-search.component';
 
 @Component({
   selector: 'app-nav',
@@ -34,6 +36,20 @@ export class NavComponent implements OnInit {
       height: '400px',
       width: '300px'
     })
+  }
+
+  openPostDialog(){
+    this.dialogRef.open(CreatePostComponent, {
+      height: '350px',
+      width: '500px'
+    })
+  }
+
+  openMusicSearchDialog(){
+    this.dialogRef.open(MusicSearchComponent, {
+      height: '800px',
+      width: '700px'
+    });
   }
 
 }

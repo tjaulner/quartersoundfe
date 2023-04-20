@@ -28,6 +28,7 @@ export class CreatePostComponent implements OnInit {
 
         console.log(res);
         this.dialogRef.close()
+        this.postService.reloadPage()
       },
       error: (error) => {
         this.errors = error.error.errors;

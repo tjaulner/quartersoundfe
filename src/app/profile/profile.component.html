@@ -1,23 +1,18 @@
 <div class="container-fluid min-vh-90 d-flex flex-column">
   <div class="row">
     <div class="col-md-12 pt-3" >
-      <h5>Profile info</h5>
-      <mat-card *ngIf="profileUser">
+      <mat-card>
         <mat-card-header>
           <div>
             <div>
               <img mat-card-lg-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" style="border-radius: 50%" >
              <mat-card-title class="text">{{profileUser.username}}</mat-card-title>
             </div>
-
           </div>
-
           <mat-card-subtitle class="mx-2"></mat-card-subtitle>
-
         </mat-card-header>
         <mat-card-content class="mx-2">
           <mat-card-title><p></p></mat-card-title>
-
           <mat-list role="list">
             <mat-list-item role="listitem">
               {{profileUser.first_name}} {{profileUser.last_name}}  |  {{profileUser.email}}
@@ -30,7 +25,6 @@
           <button mat-button *ngIf="profileUser.username !== currentUser.username">FRIEND</button>
           <button mat-button *ngIf="profileUser.username !== currentUser.username">FOLLOW</button>
           <button mat-button
-
             *ngIf="profileUser.id === currentUser.id"
             (click)="openEditUserDialog()"
             >EDIT</button>
@@ -40,18 +34,16 @@
   </div>
   <div class="row">
     <div class="col-md-12 pt-3">
-      <mat-card *ngIf="profileUser">
+      <mat-card>
         <mat-card-header>
           <mat-card-title></mat-card-title>
           <mat-card-subtitle class="mx-2"></mat-card-subtitle>
         </mat-card-header>
         <mat-card-content class="mx-2">
           <mat-card-title><p>Friends</p></mat-card-title>
-
           <mat-list role="list">
             <mat-list-item role="listitem">Friend 1 Friend 2 Friend 3</mat-list-item>
           </mat-list>
-
           <mat-card-subtitle class="mx-2 pt-2"></mat-card-subtitle>
         </mat-card-content>
       </mat-card>
@@ -59,7 +51,7 @@
     </div>
   <div class="row">
   <div class="col-md-12 pt-3">
-    <mat-card *ngIf="profileUser">
+    <mat-card>
       <mat-card-header>
         <mat-card-title></mat-card-title>
         <mat-card-subtitle class="mx-2"></mat-card-subtitle>
