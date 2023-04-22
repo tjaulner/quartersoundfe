@@ -28,6 +28,7 @@ import { PlaylistViewComponent } from './playlist-view/playlist-view.component';
 import { WallComponent } from './wall/wall.component';
 import { CreatePostComponent } from './shared/modals/create-post/create-post.component';
 import { EditPostComponent } from './shared/modals/edit-post/edit-post.component';
+import { CreateCommentComponent } from './shared/modals/create-comment/create-comment.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { EditPostComponent } from './shared/modals/edit-post/edit-post.component
     WallComponent,
     CreatePostComponent,
     EditPostComponent,
+    CreateCommentComponent,
 
   ],
   imports: [

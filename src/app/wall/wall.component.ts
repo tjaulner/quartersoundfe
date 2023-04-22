@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreatePostComponent } from '../shared/modals/create-post/create-post.component';
 import { UserService } from '../auth/user.service';
 import { EditPostComponent } from '../shared/modals/edit-post/edit-post.component';
+import { CreateCommentComponent } from '../shared/modals/create-comment/create-comment.component';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class WallComponent implements OnInit {
   currentUser: User = null;
   allPosts: [] = [];
   post: any = null;
+  allComments: [] = [];
 
   constructor(
     private postService: PostService,
@@ -36,11 +38,25 @@ export class WallComponent implements OnInit {
       this.currentUser = user;
       console.log(this.currentUser)
     })
+    this.postService.fetchComments().subscribe({
+      next: (res: any) => {
+        console.log('fetch comments', res);
+        this.allComments = res.payload.comments;
+      }
+    })
   }
 
 
   openPostDialog(){
     this.dialogRef.open(CreatePostComponent, {
+      height: '350px',
+      width: '500px'
+    })
+  }
+
+  openCommentDialog(post){
+    post = this.post
+    this.dialogRef.open(CreateCommentComponent, {
       height: '350px',
       width: '500px'
     })

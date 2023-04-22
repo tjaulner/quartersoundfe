@@ -15,6 +15,7 @@
       </mat-form-field>
       <p class="text-danger" *ngFor="let err of errors">{{err}}</p>
   <div mat-dialog-actions class="p-3">
+      <input #fileInput type="file" id="avatar"name="avatar" accept="image/png, image/jpeg">
     <button mat-raised-button color="primary" type="submit">Update</button>
     <button mat-raised-button color="accent" mat-dialog-close>Close</button>
   </div>

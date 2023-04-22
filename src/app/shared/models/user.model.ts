@@ -5,7 +5,8 @@ export class User{
     public last_name:string,
     public email:string,
     public username: string,
-    public playlists: string
+    public playlists: string,
+    public avatar,
     ){}
 
  }

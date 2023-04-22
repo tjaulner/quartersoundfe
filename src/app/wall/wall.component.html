@@ -28,8 +28,9 @@
       <mat-form-field style="width: 95%;padding-left: 30px;">
         <mat-label style="padding-left: 15px; font-size: 14px; color:rgb(243, 249, 254)">Write a comment...</mat-label>
         <input
-
-        style="height: 22px; background-color:rgb(89, 109, 109); border-radius: 35px; color:rgb(243, 249, 254)" matInput/>
+        (click)="openCommentDialog(post.id)"
+        style="height: 22px; background-color:rgb(89, 109, 109);
+        border-radius: 35px; color:rgb(243, 249, 254)" matInput/>
       </mat-form-field>
       <mat-card-actions style="padding-left: 30px;">
         <button mat-button>LIKE</button>

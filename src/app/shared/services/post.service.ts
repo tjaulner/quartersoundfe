@@ -76,4 +76,39 @@ export class PostService {
   reloadPage(){
     window.location.reload()
   }
+  // moving into the "comments" of posts - use this same post service to handle comments
+  fetchComments(){
+    const token = JSON.parse(localStorage.getItem('token'));
+
+    return this.http.get(`${URL}comments/`, {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      }
+    })
+  }
+
+  //single post
+  fetchComment(id:number){
+    return this.http.get(`${URL}comments/${id}`)
+  }
+
+  createComment(comment){
+    const token = this.authService.getToken();
+
+    return this.http.post("http://localhost:3000/api/v1/comments", comment, {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      },
+    })
+  }
+
+  deleteComment(id){
+    const token = JSON.parse(localStorage.getItem('token'));
+
+    return this.http.delete(`http://localhost:3000/api/v1/comments/${id}`,  {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      }
+    })
+  }
 }

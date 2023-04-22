@@ -33,15 +33,21 @@ export class EditProfileComponent implements OnInit {
       id: [this.user.id],
       username: [this.user.username],
       first_name: [this.user.first_name],
-      last_name: [this.user.last_name]
+      last_name: [this.user.last_name],
+      //avatar: [this.user.avatar]
     })
   }
 
   //as of 4/2/23, you cannot edit username as this is the identifier for the path
   // look into pulling by user ID instead?
   onSubmit(){
+    let photoInput = document.getElementById('avatar')
+    console.log('photo input is?', photoInput)// looking into how to do this 4/21/23
+
     const editedProfile = this.editUserForm.value;
     console.log(this.editUserForm.value)
+
+
     this.userService.onUpdatedUser(editedProfile, this.user.id).subscribe({
       next: (res:any)=>{
         console.log('user res is:', res)
@@ -54,6 +60,15 @@ export class EditProfileComponent implements OnInit {
 
   reloadPage(){
     window.location.reload()
+  }
+
+  onFileSelected() {
+    //const inputNode: any = document.querySelector('#file');
+
+
+
+
+
   }
 
 }
