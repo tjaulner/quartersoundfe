@@ -45,6 +45,7 @@ export class EditPlaylistComponent implements OnInit {
       next: (res:any)=>{
         console.log('res is:', res)
         this.playlistService.updatedPlaylist(res.payload.playlist)
+        this.reloadPage()
         this.dialogRef.close()
       },
       error: (error) => {
@@ -52,6 +53,10 @@ export class EditPlaylistComponent implements OnInit {
         console.log(error);
       },
     })
+  }
+
+  reloadPage(){
+    window.location.reload()
   }
 
 }

@@ -18,6 +18,9 @@
 
         <mat-card-actions>
           <button mat-button *ngIf="creator && currentUser && creator.username !== currentUser.username">LIKE</button>
+          <button
+          (click)="addLike(playlist)"
+          mat-button>LIKE ({{playlist.likes.length}})</button>
           <button mat-button>SHARE</button>
           <button mat-button>COMMENT</button>
           <button mat-button
@@ -118,7 +121,7 @@
               <li class="list-group-item d-flex justify-content-between align-items-start" *ngIf="plist.playlist_name !== playlist.playlist_name">
                 <a class="text-decoration-none text-body"routerLink="/playlists/{{plist.id}}">
                 <div class="fw-bold">{{plist.playlist_name}} </div></a>
-              <span class="badge bg-primary rounded-pill">14</span>
+              <span class="badge bg-primary rounded-pill">add likes</span>
             </li>
           </ul>
           </div>

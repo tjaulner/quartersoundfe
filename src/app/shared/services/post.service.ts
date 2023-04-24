@@ -110,5 +110,29 @@ export class PostService {
         Authorization: `Bearer ${token.value}`
       }
     })
+    this.reloadPage()
+  }
+  /// posts/likes
+  createLike(likes){
+    const token = this.authService.getToken();
+    //const id = post
+    //const likes = null;
+    console.log('post id like is?', likes)
+
+    return this.http.post(`http://localhost:3000/api/v1/posts/${likes}/likes`, likes, {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      },
+    })
+  }
+ // not functional yet
+  deleteLike(id){
+    const token = JSON.parse(localStorage.getItem('token'));
+
+    return this.http.delete(`http://localhost:3000/api/v1/posts/${id}`,  {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      }
+    })
   }
 }

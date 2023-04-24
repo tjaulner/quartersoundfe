@@ -94,7 +94,7 @@ export class PlaylistDetailComponent implements OnInit {
   onDeletePlaylist(){
     this.playlistService.deletePlaylist(this.playlist.id).subscribe({
       next: (res) =>{
-        this.route.navigate([`/profile/${this.currentUser.username}`])
+        this.route.navigate([`/home`])
       }
     })
   }
@@ -106,5 +106,22 @@ export class PlaylistDetailComponent implements OnInit {
         this.route.navigate([`/playlists/${this.playlist.id}`])
     }}
     )
+    this.reloadPage()
   }
+
+  reloadPage(){
+    window.location.reload()
+  }
+
+  addLike(playlist){
+
+  this.playlistService.createLike(playlist.id).subscribe({
+    next: (res) => {
+      this.reloadPage();
+    }
+    })
+
+  }
+
+
 }

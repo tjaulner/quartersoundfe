@@ -1,0 +1,49 @@
+.mat-accordion, .mat-expansion-panel{
+  background: rgb(227, 235, 243)!important;
+}
+
+.comments-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.comments-container {
+  margin-top: 5px;
+}
+
+.comment {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.comment-image-container {
+  margin-right: 12px;
+}
+
+.comment-right-part {
+  width: 100%;
+}
+
+.comment-content {
+  display: flex;
+}
+
+.comment-author {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.comment-text {
+  font-size: 14px;
+  margin-top: 12px;
+}
+
+.options {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.replies {
+  margin-top: 20px;
+}

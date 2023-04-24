@@ -7,6 +7,7 @@ import { CreatePostComponent } from '../shared/modals/create-post/create-post.co
 import { UserService } from '../auth/user.service';
 import { EditPostComponent } from '../shared/modals/edit-post/edit-post.component';
 import { CreateCommentComponent } from '../shared/modals/create-comment/create-comment.component';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -19,6 +20,8 @@ export class WallComponent implements OnInit {
   allPosts: [] = [];
   post: any = null;
   allComments: [] = [];
+
+  panelOpenState = false;
 
   constructor(
     private postService: PostService,
@@ -55,8 +58,12 @@ export class WallComponent implements OnInit {
   }
 
   openCommentDialog(post){
-    post = this.post
+
+    console.log(post) // this does pull single post detail, including id
     this.dialogRef.open(CreateCommentComponent, {
+      data: {
+          post_id: post.id // this pulls the "post id" and transfers it to the create comment component through mat injection
+      },
       height: '350px',
       width: '500px'
     })
@@ -85,6 +92,26 @@ export class WallComponent implements OnInit {
 
   reloadPage(){
     window.location.reload()
+  }
+
+  onDeleteComment(comment){
+    this.postService.deleteComment(comment.id).subscribe({
+      next: (res) => {
+
+        this.route.navigate([`/home`])
+    }}
+    )
+    this.reloadPage()
+  }
+
+  addLike(post){
+
+    this.postService.createLike(post.id).subscribe({
+      next: (res) => {
+        this.route.navigate([`/home`])
+      }
+    })
+
   }
 
 }

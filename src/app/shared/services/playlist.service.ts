@@ -97,7 +97,23 @@ export class PlaylistService {
         Authorization: `Bearer ${token.value}`
       }
     })
+
   }
+
+  createLike(likes){
+    const token = this.authService.getToken();
+    //const id = post
+    //const likes = null;
+    console.log('playlist id like is?', likes)
+
+    return this.http.post(`http://localhost:3000/api/v1/playlists/${likes}/likes`, likes, {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      },
+    })
+  }
+
+
 
 
 }

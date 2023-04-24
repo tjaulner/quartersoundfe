@@ -13,10 +13,14 @@
           <mat-card-title><p>Current Playlists:</p></mat-card-title>
 
           <mat-list role="list" *ngFor="let plist of profilePlaylists" routerLink="/playlists/{{plist.id}}" style="cursor: pointer">
-            <mat-list-item role="listitem">{{plist.playlist_name}}</mat-list-item>
+
+                <div><h4>{{plist.playlist_name  }}</h4></div>
+                <div><p class="text-muted" style="font-size: 10px;">  (Last Updated: {{plist.updated_at}})</p></div>
+
+
           </mat-list>
           <mat-divider></mat-divider>
-          <mat-card-subtitle class="mx-2 pt-2">Last Updated:</mat-card-subtitle>
+          <mat-card-subtitle class="mx-2 pt-2"></mat-card-subtitle>
         </mat-card-content>
       </mat-card>
       </div>
