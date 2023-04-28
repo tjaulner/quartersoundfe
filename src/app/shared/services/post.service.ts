@@ -25,12 +25,10 @@ export class PostService {
       }
     })
   }
-
   //single post
   fetchPost(id:number){
     return this.http.get(`${URL}posts/${id}`)
   }
-
   createPost(post){
     const token = this.authService.getToken();
 
@@ -40,7 +38,6 @@ export class PostService {
       },
     })
   }
-
   deletePost(id){
     const token = JSON.parse(localStorage.getItem('token'));
 
@@ -55,7 +52,6 @@ export class PostService {
     this.currentUserPost = posts;
     this.currentUserPostsSubject.next(posts);
   }
-
   onUpdatedPost(updatedPost, id){
     const token = JSON.parse(localStorage.getItem('token'));
 
@@ -79,19 +75,16 @@ export class PostService {
   // moving into the "comments" of posts - use this same post service to handle comments
   fetchComments(){
     const token = JSON.parse(localStorage.getItem('token'));
-
     return this.http.get(`${URL}comments/`, {
       headers: {
         Authorization: `Bearer ${token.value}`
       }
     })
   }
-
-  //single post
+  //single comment
   fetchComment(id:number){
     return this.http.get(`${URL}comments/${id}`)
   }
-
   createComment(comment){
     const token = this.authService.getToken();
 
@@ -101,7 +94,6 @@ export class PostService {
       },
     })
   }
-
   deleteComment(id){
     const token = JSON.parse(localStorage.getItem('token'));
 
@@ -135,4 +127,37 @@ export class PostService {
       }
     })
   }
+
+  /// posts/comments/replies
+  createReply(comment){
+    const token = this.authService.getToken();
+    console.log('comment id for reply is?', comment)
+    return this.http.post(`http://localhost:3000/api/v1/replies`, comment, {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      },
+    })
+  }
+  fetchReplies(){
+    const token = JSON.parse(localStorage.getItem('token'));
+    return this.http.get(`${URL}replies/`, {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      }
+    })
+  }
+  //single reply
+  fetchReply(id:number){
+    return this.http.get(`${URL}replies/${id}`)
+  }
+  deleteReply(id){
+    const token = JSON.parse(localStorage.getItem('token'));
+    return this.http.delete(`http://localhost:3000/api/v1/replies/${id}`,  {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      }
+    })
+  }
+
+  
 }

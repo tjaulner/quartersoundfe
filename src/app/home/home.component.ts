@@ -27,14 +27,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.playlistService.fetchPlaylists().subscribe((res: any)=>{
-      console.log(res);
       if (res.success) {
         this.suggestedPlaylists = res.payload.suggested
       }
     });
 
     this.playlistService.fetchUsers().subscribe((res: any)=>{
-      console.log(res);
       if (res.success) {
         this.suggestedUsers = res.payload.suggested
       }

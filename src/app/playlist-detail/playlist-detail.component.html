@@ -120,8 +120,10 @@
            <ul class="list-group list-group-flush pt-2">
               <li class="list-group-item d-flex justify-content-between align-items-start" *ngIf="plist.playlist_name !== playlist.playlist_name">
                 <a class="text-decoration-none text-body"routerLink="/playlists/{{plist.id}}">
-                <div class="fw-bold">{{plist.playlist_name}} </div></a>
-              <span class="badge bg-primary rounded-pill">add likes</span>
+                <div class="fw-bold">{{plist.playlist_name}} </div>
+                <div class="text-muted">Likes:<span class="badge bg-primary rounded-pill">add here</span></div>
+              </a>
+
             </li>
           </ul>
           </div>

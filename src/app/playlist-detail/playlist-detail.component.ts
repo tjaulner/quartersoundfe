@@ -60,12 +60,12 @@ export class PlaylistDetailComponent implements OnInit {
           console.log('playlist info is', this.playlist)
           // not sure why, but needed to pull data this way?
           this.userService.getCurrentUser(this.userId)
-          this.usersPlaylists = res.pa
+          //this.usersPlaylists = res.pa
           //console.log(this.userId)
             this.userService.getCurrentUser(this.userId) // not working at log off 4/3
             this.userService.playlistUserSubject.subscribe((data:[])=> {
             this.usersPlaylists = data;
-            //console.log('user service playlist detail is?', data)
+            console.log('user service playlist detail is?', data)
     })
         }
       })})

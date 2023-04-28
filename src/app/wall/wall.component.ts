@@ -8,6 +8,7 @@ import { UserService } from '../auth/user.service';
 import { EditPostComponent } from '../shared/modals/edit-post/edit-post.component';
 import { CreateCommentComponent } from '../shared/modals/create-comment/create-comment.component';
 import { FormControl } from '@angular/forms';
+import { CreateReplyComponent } from '../shared/modals/create-reply/create-reply.component';
 
 
 @Component({
@@ -20,6 +21,8 @@ export class WallComponent implements OnInit {
   allPosts: [] = [];
   post: any = null;
   allComments: [] = [];
+  allReplies: [] = [];
+
 
   panelOpenState = false;
 
@@ -39,16 +42,23 @@ export class WallComponent implements OnInit {
     })
     this.userService.currentUserSubject.subscribe((user:User)=>{
       this.currentUser = user;
-      console.log(this.currentUser)
+      console.log('user service current user subject',this.currentUser)
     })
     this.postService.fetchComments().subscribe({
       next: (res: any) => {
         console.log('fetch comments', res);
         this.allComments = res.payload.comments;
+
+      }
+    })
+    this.postService.fetchReplies().subscribe({
+      next: (res: any) => {
+        console.log('fetch replies', res);
+        this.allReplies = res.payload.replies;
+
       }
     })
   }
-
 
   openPostDialog(){
     this.dialogRef.open(CreatePostComponent, {
@@ -69,6 +79,19 @@ export class WallComponent implements OnInit {
     })
   }
 
+  // for replies - uses same dialog box as comments
+  openReplyDialog(comment){
+    console.log(comment)
+
+    this.dialogRef.open(CreateReplyComponent, {
+      data: {
+        comment_id: comment.id
+      },
+      height: '350px',
+      width: '500px'
+    })
+  }
+
   openEditPostDialog(post){
       this.dialogRef.open(EditPostComponent, {
       data: {
@@ -83,7 +106,6 @@ export class WallComponent implements OnInit {
   onDeletePost(post){
     this.postService.deletePost(post.id).subscribe({
       next: (res) => {
-        //currently this will delete the post but page does not refresh
         this.route.navigate([`/home`])
     }}
     )
@@ -97,7 +119,6 @@ export class WallComponent implements OnInit {
   onDeleteComment(comment){
     this.postService.deleteComment(comment.id).subscribe({
       next: (res) => {
-
         this.route.navigate([`/home`])
     }}
     )
@@ -105,13 +126,21 @@ export class WallComponent implements OnInit {
   }
 
   addLike(post){
-
     this.postService.createLike(post.id).subscribe({
       next: (res) => {
         this.route.navigate([`/home`])
       }
     })
+  }
 
+  onDeleteReply(reply) {
+    console.log('this reply is?', reply)
+    this.postService.deleteReply(reply.id).subscribe({
+      next: (res) => {
+        this.route.navigate([`/home`])
+    }}
+    )
+    this.reloadPage()
   }
 
 }

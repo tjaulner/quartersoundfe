@@ -29,7 +29,7 @@ import { WallComponent } from './wall/wall.component';
 import { CreatePostComponent } from './shared/modals/create-post/create-post.component';
 import { EditPostComponent } from './shared/modals/edit-post/edit-post.component';
 import { CreateCommentComponent } from './shared/modals/create-comment/create-comment.component';
-
+import { CreateReplyComponent } from './shared/modals/create-reply/create-reply.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +49,7 @@ import { CreateCommentComponent } from './shared/modals/create-comment/create-co
     CreatePostComponent,
     EditPostComponent,
     CreateCommentComponent,
+    CreateReplyComponent,
 
   ],
   imports: [

@@ -36,7 +36,6 @@
         <button
           (click)="addLike(post)"
           mat-button>LIKE ({{post.likes.length}})</button>
-        <button mat-button>SHARE</button>
         <button mat-button
         *ngIf="post.user.id === currentUser.id"
         (click)="openEditPostDialog(post)">EDIT</button>
@@ -71,15 +70,60 @@
                       <div class="comment-author text-muted">{{comment.user.first_name}} {{comment.user.last_name}}</div>
                     </div>
                     <div class="comment-text">{{ comment.body }}</div>
-                    <div class="options"><button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu">
-                    <mat-icon><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="15" height="15">
-                      <g><circle cx="256" cy="53.333" r="53.333"/><circle cx="256" cy="256" r="53.333"/><circle cx="256" cy="458.667" r="53.333"/></g></svg>
-                      </mat-icon></button><mat-menu #menu="matMenu">
-                        <button
-                        (click)="onDeleteComment(comment)"
-                        mat-menu-item>Delete</button></mat-menu>
-                    </div>
+                    <mat-card-actions style="padding-left: 30px;">
+                      <button mat-button>LIKE</button>
+                      <button (click)="openReplyDialog(comment)" mat-button>REPLY</button>
+                      <button (click)="onDeleteComment(comment)" mat-button *ngIf="comment.user.id === currentUser.id">DELETE</button>
+
+                        <!--Start of Reply-->
+                        <ng-container *ngIf="comment.replies.length !== 0">
+                          <mat-accordion>
+                            <mat-expansion-panel
+                            (opened)="panelOpenState = true"
+                            (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header>
+                            <mat-panel-title></mat-panel-title>
+                            <mat-panel-description>Replies ({{comment.replies.length}})</mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <div *ngFor="let reply of allReplies">
+                              <div *ngIf="comment.id === reply.comment_id">
+                                <div class="comments-container">
+                                  <div class="comment">
+                                    <div class="comment-image-container">
+                                      <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" style="border-radius: 50%; max-height: 45px"/>
+                                      <mat-card-subtitle style="font-size: 10px; padding-left: 5px;">{{reply.created_at | date:'shortDate'}}</mat-card-subtitle>
+                                    </div>
+                                    <div class="comment-right-part">
+                                      <div class="comment-content">
+                                        <div class="comment-author text-muted">{{reply.user.first_name}} {{reply.user.last_name}}</div>
+                                      </div>
+                                      <div class="comment-text">{{ reply.body }}</div>
+
+                                      <div class="options"><button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu">
+                                      <mat-icon><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="15" height="15">
+                                        <g><circle cx="256" cy="53.333" r="53.333"/><circle cx="256" cy="256" r="53.333"/><circle cx="256" cy="458.667" r="53.333"/></g></svg>
+                                        </mat-icon></button>
+                                        <mat-menu #menu="matMenu">
+                                          <button mat-button>LIKE</button>
+                                          <button (click)="openReplyDialog(comment)" mat-button>REPLY</button>
+                                          <button (click)="onDeleteReply(reply)" mat-button *ngIf="reply.user.id === currentUser.id">DELETE</button>
+                                        </mat-menu>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  </div>
+                                  <hr>
+                              </div>
+                            </div>
+                            </mat-expansion-panel>
+                          </mat-accordion>
+                        </ng-container>
+                        <!--End of Reply-->
+                    </mat-card-actions>
+
                   </div>
+
+
                 </div>
                 </div>
                 <hr>
@@ -88,8 +132,6 @@
           </mat-expansion-panel>
         </mat-accordion>
       </ng-container>
-
-
       <!--End of Comments-->
     </mat-card>
     </div>

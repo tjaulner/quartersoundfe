@@ -24,27 +24,22 @@ export class PlaylistService {
   fetchPlaylists(){
     return this.http.get(`${URL}playlists/home`)
   }
-
   // this is for the 5 "you may know" on the home page
   fetchUsers(){
     return this.http.get(`${URL}users/home`)
   }
-
   // this is for single playlist
   fetchPlaylist(id:number){
     return this.http.get(`${URL}playlists/${id}`)
   }
-
   createPlaylist(playlist){
     const token = this.authService.getToken();
-
     return this.http.post("http://localhost:3000/api/v1/playlists", playlist, {
       headers: {
         Authorization: `Bearer ${token.value}`
       },
     })
   }
-
   setPlaylists(playlists){
     this.currentUserPlaylist = playlists;
     this.currentUserPlaylistsSubject.next(playlists);
