@@ -105,13 +105,11 @@ export class PostService {
     this.reloadPage()
   }
   /// posts/likes
-  createLike(likes){
+  createPostLike(likes){
     const token = this.authService.getToken();
-    //const id = post
-    //const likes = null;
-    console.log('post id like is?', likes)
+    console.log('likes is?', likes)
 
-    return this.http.post(`http://localhost:3000/api/v1/posts/${likes}/likes`, likes, {
+    return this.http.post(`http://localhost:3000/api/v1/posts/${likes}/likes`, likes,{
       headers: {
         Authorization: `Bearer ${token.value}`
       },
@@ -125,6 +123,17 @@ export class PostService {
       headers: {
         Authorization: `Bearer ${token.value}`
       }
+    })
+  }
+
+  createCommentLike(likes){
+    const token = this.authService.getToken();
+    console.log('likes is?', likes)
+
+    return this.http.post(`http://localhost:3000/api/v1/comments/${likes}/likes`, likes,{
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      },
     })
   }
 
@@ -159,5 +168,16 @@ export class PostService {
     })
   }
 
-  
+  createReplyLike(likes){
+    const token = this.authService.getToken();
+    console.log('likes is?', likes)
+
+    return this.http.post(`http://localhost:3000/api/v1/replies/${likes}/likes`, likes,{
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      },
+    })
+  }
+
+
 }

@@ -34,7 +34,7 @@
       </mat-form-field>
       <mat-card-actions style="padding-left: 30px;">
         <button
-          (click)="addLike(post)"
+          (click)="addPostLike(post)"
           mat-button>LIKE ({{post.likes.length}})</button>
         <button mat-button
         *ngIf="post.user.id === currentUser.id"
@@ -71,7 +71,7 @@
                     </div>
                     <div class="comment-text">{{ comment.body }}</div>
                     <mat-card-actions style="padding-left: 30px;">
-                      <button mat-button>LIKE</button>
+                      <button mat-button (click)="addCommentLike(comment)">LIKE ({{comment.likes.length}})</button>
                       <button (click)="openReplyDialog(comment)" mat-button>REPLY</button>
                       <button (click)="onDeleteComment(comment)" mat-button *ngIf="comment.user.id === currentUser.id">DELETE</button>
 
@@ -104,7 +104,7 @@
                                         <g><circle cx="256" cy="53.333" r="53.333"/><circle cx="256" cy="256" r="53.333"/><circle cx="256" cy="458.667" r="53.333"/></g></svg>
                                         </mat-icon></button>
                                         <mat-menu #menu="matMenu">
-                                          <button mat-button>LIKE</button>
+                                          <button mat-button (click)="addReplyLike(reply)">LIKE ({{reply.likes.length}})</button>
                                           <button (click)="openReplyDialog(comment)" mat-button>REPLY</button>
                                           <button (click)="onDeleteReply(reply)" mat-button *ngIf="reply.user.id === currentUser.id">DELETE</button>
                                         </mat-menu>

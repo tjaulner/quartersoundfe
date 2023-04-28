@@ -125,8 +125,8 @@ export class WallComponent implements OnInit {
     this.reloadPage()
   }
 
-  addLike(post){
-    this.postService.createLike(post.id).subscribe({
+  addPostLike(post){
+    this.postService.createPostLike(post.id).subscribe({
       next: (res) => {
         this.route.navigate([`/home`])
       }
@@ -141,6 +141,22 @@ export class WallComponent implements OnInit {
     }}
     )
     this.reloadPage()
+  }
+
+  addCommentLike(comment){
+    this.postService.createCommentLike(comment.id).subscribe({
+      next: (res) => {
+        this.route.navigate([`/home`])
+      }
+    })
+  }
+
+  addReplyLike(reply){
+    this.postService.createReplyLike(reply.id).subscribe({
+      next: (res) => {
+        this.route.navigate([`/home`])
+      }
+    })
   }
 
 }
