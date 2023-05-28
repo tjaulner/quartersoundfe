@@ -5,7 +5,8 @@ import { UserService } from 'src/app/auth/user.service';
 import { User } from '../../models/user.model';
 import { PlaylistService } from '../../services/playlist.service';
 import { Router } from '@angular/router';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { CreatePlaylistComponent } from '../create-playlist/create-playlist.component';
 
 
 @Component({
@@ -27,7 +28,9 @@ export class MusicSearchComponent implements OnInit {
     private userService: UserService,
     private playlistService: PlaylistService,
     private route:Router,
-    public dialogRef: MatDialogRef<MusicSearchComponent>
+    public dialogRef: MatDialogRef<MusicSearchComponent>,
+    public playlistRef: MatDialog
+
     ) { }
 
   ngOnInit(): void {
@@ -50,6 +53,7 @@ export class MusicSearchComponent implements OnInit {
     this.userService.pullUserPlaylists(this.currentUser.id);
 
   }
+  // methods
 
   onSearchMusic(value){
     this.musicService.musicSearchResults(value);
@@ -72,8 +76,14 @@ export class MusicSearchComponent implements OnInit {
         console.log(error);
       }
     })
-
   }
+  // 5/28 looking for option to create new playlist and save track from music search
+  newPlaylist(){
+    this.playlistRef.open(CreatePlaylistComponent, {
+      height: '400px',
+      width: '300px'
+  })
+}
 
 
 

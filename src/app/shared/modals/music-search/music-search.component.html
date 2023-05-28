@@ -47,6 +47,7 @@
                       <mat-menu #menu="matMenu">
                         <div *ngFor="let plist of profilePlaylists">
                           <button mat-menu-item (click)="saveButton(results, plist)">{{plist.playlist_name}}</button>
+                          <button mat-menu-item (click)="newPlaylist(results)">New</button>
                         </div>
                       </mat-menu>
                     </div>
